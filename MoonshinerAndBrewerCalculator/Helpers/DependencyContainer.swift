@@ -1,17 +1,22 @@
 import UIKit
 final class DependencyContainer {
+    
+    private let calculationsProvider = CalculationsProvider()
+    
     //MARK: - ViewController
     var tabBarController: TabBarController {
         TabBarController(
             moonShineCoordinator: moonShineCoordinator,
-            brewerCoordinator: brewerCoordinator,  // Исправлено
+            brewerCoordinator: brewerCoordinator,
             recipesCoordinator: recipesCoordinator,
             savedRecipesCoordinator: savedRecipesCoordinator
         )
     }
 
     var moonShineViewController: MoonShineViewController {
-        MoonShineViewController()
+        let vc = MoonShineViewController(calculationsProvider: calculationsProvider)
+        vc.coordinator = moonShineCoordinator
+        return vc
     }
     
     var brewerViewController: BrewerViewController {

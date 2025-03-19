@@ -12,13 +12,6 @@ final class CalculationCell: UITableViewCell {
         return label
     }()
     
-    private let iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemBlue
-        return imageView
-    }()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -47,7 +40,6 @@ final class CalculationCell: UITableViewCell {
         selectionStyle = .none
         
         contentView.addSubview(containerView)
-        containerView.addSubview(iconImageView)
         containerView.addSubview(titleLabel)
     }
     
@@ -58,19 +50,13 @@ final class CalculationCell: UITableViewCell {
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             
-            iconImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
-            iconImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 24),
-            iconImageView.heightAnchor.constraint(equalToConstant: 24),
-            
-            titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 15),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
             titleLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
     }
     
-    func configure(with title: String, icon: UIImage?) {
+    func configure(with title: String) {
         titleLabel.text = title
-        iconImageView.image = icon
     }
 }
