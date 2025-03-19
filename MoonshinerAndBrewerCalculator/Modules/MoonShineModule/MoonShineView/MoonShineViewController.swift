@@ -2,24 +2,36 @@
 import UIKit
 
 final class MoonShineViewController: UIViewController {
-    let calculations = [
-        "Дробная перегонка",
-        "Скорость отбора",
-        "Разбавление спирта",
-        "Концентрирование спирта",
-        "Смесь спиртов",
-        "Перевод массы в объем",
-        "Изменение плотности",
-        "Температура смеси жидкостей",
-        "Охлаждение жидкости",
-        "Расчет мощности тена",
-        "Время нагрева",
-        "Мощность нагрева",
-        "Коррекция спиртометра",
-        "Расчет затора",
-        "Заторная вода",
+    weak var coordinator: MoonShineCoordinator? 
+    private let calculationsProvider: CalculationsProvider
+    private var calculations: [CalculationItem] {
+        return calculationsProvider.calculations
+    }
 
-    ]
+    init(calculationsProvider: CalculationsProvider) {
+        self.calculationsProvider = calculationsProvider
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+//    let calculations = [
+//        "🥃 Дробная перегонка",
+//        "💧 Разбавление спирта",
+//        "🍶 Смесь спиртов",
+//        "📏 Коррекция спиртометра",
+//        "⚖️ Перевод массы в объем",
+//        "📉 Изменение плотности",
+//        "❄️ Охлаждение жидкости",
+//        "🔌 Расчет мощности ТЭНа",
+//        "⏱️ Время нагрева",
+//        "🔥 Мощность нагрева",
+//        "🌾 Расчет затора",
+//        "🚰 Заторная вода",
+//
+//    ]
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -67,8 +79,8 @@ extension MoonShineViewController:  UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CalculationCell.identifier, for: indexPath) as! CalculationCell
-        let icon = UIImage(systemName: "gearshape.fill")
-        cell.configure(with: calculations[indexPath.row], icon: icon)
+        let calculation = calculations[indexPath.row]
+        cell.configure(with: calculation.title)
         return cell
     }
     
@@ -78,57 +90,9 @@ extension MoonShineViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            let vc = FractionalDistillationViewController() // Дробная перегонка
-            navigationController?.pushViewController(vc, animated: true)
-        case 1:
-            let vc = SelectionSpeedViewController() // Скорость отбора
-            navigationController?.pushViewController(vc, animated: true)
-           
-        case 2:
-            let vc = DilutionViewController() // Разбавление спирта
-            navigationController?.pushViewController(vc, animated: true)
-   
-        case 3:
-            let vc = MassToVolumeViewController() // Перевод массы в объем
-            navigationController?.pushViewController(vc, animated: true)
-        case 4:
-            let vc = DensityChangeViewController() // Изменение плотности
-            navigationController?.pushViewController(vc, animated: true)
-        case 5:
-            let vc = MixtureTemperatureViewController() // Температура смеси жидкостей
-            navigationController?.pushViewController(vc, animated: true)
-        case 6:
-            let vc = CoolingViewController() // Охлаждение жидкости
-            navigationController?.pushViewController(vc, animated: true)
-        case 7:
-            let vc = PowerCalculationViewController() // Расчет мощности тена
-            navigationController?.pushViewController(vc, animated: true)
-        case 8:
-            let vc = HeatingTimeViewController() // Время нагрева
-            navigationController?.pushViewController(vc, animated: true)
-        case 9:
-            let vc = HeatingPowerViewController() // Мощность нагрева
-            navigationController?.pushViewController(vc, animated: true)
-        case 10:
-            let vc = AlcoholMeterCorrectionViewController() // Коррекция спиртометра
-            navigationController?.pushViewController(vc, animated: true)
-        case 11:
-            let vc = MashCalculationViewController() // Расчет затора
-            navigationController?.pushViewController(vc, animated: true)
-        case 12:
-            let vc = MashWaterViewController() // Заторная вода
-            navigationController?.pushViewController(vc, animated: true)
-        case 13:
-            let vc = ConcentrationViewController() // Концентрирование спирта
-            navigationController?.pushViewController(vc, animated: true)
-        case 14:
-            let vc = MixtureViewController() // Смесь спиртов
-            navigationController?.pushViewController(vc, animated: true)
-        default:
-            break
-        }
+        let selectedCalculation = calculations[indexPath.row]
+        let vc = selectedCalculation.viewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

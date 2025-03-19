@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>598</string>
+					<string>9</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>598</string>
+					<string>9</string>
 					<key>Timestamp</key>
-					<string>763978481.4089659</string>
+					<string>764066726.034204</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -36,11 +36,14 @@
 				<key>focused</key>
 				<string></string>
 				<key>leading</key>
-				<string>    }
-}
+				<string>    private var rawSpiritStrength: Double = 0.0
+    private var temperature: Double = 0.0
 </string>
 				<key>trailing</key>
-				<string></string>
+				<string>    private var headsPercentage: Double = 9.0
+    private var tailsPercentage: Double = 20.0
+    private var finalStrength: Double = 92.0
+</string>
 			</dict>
 			<key>type</key>
 			<string>bookmark</string>
@@ -53,13 +56,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>598</string>
+					<string>9</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>598</string>
+					<string>9</string>
 					<key>Timestamp</key>
-					<string>763978481.408937</string>
+					<string>764066726.034219</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -77,11 +80,14 @@
 				<key>focused</key>
 				<string></string>
 				<key>leading</key>
-				<string>    }
-}
+				<string>    private var rawSpiritStrength: Double = 0.0
+    private var temperature: Double = 0.0
 </string>
 				<key>trailing</key>
-				<string></string>
+				<string>    private var headsPercentage: Double = 9.0
+    private var tailsPercentage: Double = 20.0
+    private var finalStrength: Double = 92.0
+</string>
 			</dict>
 			<key>type</key>
 			<string>bookmark</string>

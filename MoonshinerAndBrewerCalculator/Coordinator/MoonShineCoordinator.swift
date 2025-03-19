@@ -11,7 +11,12 @@ final class MoonShineCoordinator: Coordinator {
     }
     func start() {
         let moonShineViewController = container.moonShineViewController
+        moonShineViewController.coordinator = self
         navigationController.pushViewController(moonShineViewController, animated: true)
+    }
+    func showCalculationScreen(for calculation: CalculationItem) {
+        let vc = calculation.viewController()
+        navigationController.pushViewController(vc, animated: true)
     }
     
     
